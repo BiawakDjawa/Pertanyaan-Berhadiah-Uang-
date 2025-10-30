@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat ini hadiah mu</title>
+</head>
+<body>
+<header><p><h1 style="color: green;">SELAMAT kAMU BERHASIL MENEBAK SEMUA DENGAN BENAR</h1></p></header>
+
+<style>
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .tombol-hadiah {
+    width: 80%;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  #kodeHadiah {
+    font-size: 18px;
+    width: 80%;
+    word-wrap: break-word;
+  }
+}
+
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff8c00, #ff0080);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+
+    /* 🌈 Tombol Hadiah Keren */
+    .tombol-hadiah {
+      background: linear-gradient(90deg, #ff0077, #ffae00);
+      border: none;
+      padding: 15px 40px;
+      font-size: 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 50px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tombol-hadiah:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255,255,255,0.7);
+    }
+
+    .tombol-hadiah::after {
+      content: "✨";
+      position: absolute;
+      top: 0;
+      left: -50px;
+      width: 50px;
+      height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-20deg);
+      transition: left 0.5s;
+    }
+
+    .tombol-hadiah:hover::after {
+      left: 110%;
+    }
+
+    /* 🎁 Tampilan Kode Hadiah */
+    #kodeHadiah {
+      margin-top: 30px;
+      font-size: 22px;
+      background: rgba(255,255,255,0.15);
+      padding: 15px 25px;
+      border-radius: 10px;
+      display: none;
+      animation: muncul 0.5s ease-out;
+      letter-spacing: 2px;
+    }
+
+    @keyframes muncul {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Selamat! Kamu Mendapatkan Hadiah Spesial 🎁</h1>
+  <blockquote>jangan lupa untuk screenshot untuk bukti</blockquote>
+  <button class="tombol-hadiah" onclick="tampilkanKode()">Dapatkan Hadiah</button>
+
+  <div id="kodeHadiah"></div>
+
+  <script>
+    function generateKodeUnik(length) {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let kode = "";
+      for (let i = 0; i < length; i++) {
+        kode += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return kode;
+    }
+
+    function tampilkanKode() {
+      const kodeDiv = document.getElementById("kodeHadiah");
+      const kodeUnik = "KODE-" + generateKodeUnik(8);
+
+      kodeDiv.textContent = "🎁 Kode Hadiah Kamu: " + kodeUnik;
+      kodeDiv.style.display = "inline-block";
+    }
+  </script>
+
+
+</body>
+</html>

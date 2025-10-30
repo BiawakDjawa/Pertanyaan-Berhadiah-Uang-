@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis 5 Soal dengan Nyawa</title>
+  <style>
+    /* 🌈 Background gradasi oranye–merah cerah dan bergerak */
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .tombol-hadiah {
+    width: 80%;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  #kodeHadiah {
+    font-size: 18px;
+    width: 80%;
+    word-wrap: break-word;
+  }
+}
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(120deg, #ffb347, #ff7f50, #ff4500, #ff0000);
+      background-size: 300% 300%;
+      animation: gradasiBergerak 8s ease infinite;
+    }
+
+    @keyframes gradasiBergerak {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 🏷️ Judul */
+    h2 {
+      margin-top: 40px;
+      font-size: 28px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* ❤️ Tampilan nyawa */
+    #nyawa {
+      font-size: 26px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    /* 🎯 Container soal */
+    #daftarSoal {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      display: inline-block;
+      text-align: left;
+    }
+
+    .soal {
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    /* ✏️ Input */
+    input {
+      width: 280px;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      color: #222;
+      transition: box-shadow 0.3s;
+    }
+
+    input:focus {
+      box-shadow: 0 0 10px rgba(255,255,255,0.6);
+    }
+
+    /* 🔘 Tombol kirim */
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 18px;
+      background: linear-gradient(90deg, #ff7300, #ff3c00);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 35px rgba(255,255,255,0.6);
+    }
+
+    /* 📢 Pesan dan gambar salah */
+    #pesan {
+      font-weight: bold;
+      margin-top: 15px;
+      font-size: 18px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    }
+
+    #gambarSalah {
+      display: none;
+      width: 160px;
+      margin-top: 15px;
+      animation: muncul 0.5s ease-out;
+    }
+
+    @keyframes muncul {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h2>🔥 Kuis Krusial Khalil 🔥</h2>
+  <div id="nyawa">❤️❤️❤️❤️❤️</div>
+
+  <div id="daftarSoal">
+    <div class="soal">
+      <p>1. jika kecepatan mobil khalil 20km/jam dalam 10jam berapa km yang sudah khalil tempuh?</p>
+      <input type="text" id="soal1" placeholder="Jawaban kamu...">
+    </div>
+
+    <div class="soal">
+      <p>2. Siapa temen online khalil di game valorant?</p>
+      <input type="text" id="soal2" placeholder="Jawaban kamu...">
+    </div>
+
+    <div class="soal">
+      <p>3. Siapa waifu khalil, dan apa nama animenya?</p>
+      <input type="text" id="soal3" placeholder="Jawaban kamu...">
+    </div>
+
+    <div class="soal">
+      <p>4. Jelaskan kegunaan element br, mark, dan h1 dalam HTML?</p>
+      <input type="text" id="soal4" placeholder="Jawaban kamu...">
+    </div>
+
+    <div class="soal">
+      <p>5. i'm currently playing, but i dont have any friends,<br>what should khalil do<br><pre><ins><mark>Clue:</mark>berhubungan dengan sosial media,<br> game dan "MENCARI"</ins></pre>?</p>
+      <input type="text" id="soal5" placeholder="Jawaban kamu...">
+    </div>
+  </div>
+
+  <button id="tombolKirim" onclick="cekJawaban()">Kirim Jawaban</button>
+
+  <p id="pesan"></p>
+  <img id="gambarSalah" src="" alt="">
+
+  <script>
+    let nyawa = 5;
+    const kunciJawaban = [
+      "200km",
+      "xopiwah",
+      "elaina, majo no tabi tabi",
+      "br untuk line break,mark untuk marked text,h1 untuk menandai judul utama",
+      "mencari teman di sosial media, dan ajak dia untuk bermain game bersama"
+    ];
+
+    function updateNyawa() {
+      document.getElementById("nyawa").textContent = "❤️".repeat(nyawa);
+    }
+
+    function cekJawaban() {
+      const pesan = document.getElementById("pesan");
+      const gambar = document.getElementById("gambarSalah");
+      const tombol = document.getElementById("tombolKirim");
+      const inputFields = [
+        document.getElementById("soal1"),
+        document.getElementById("soal2"),
+        document.getElementById("soal3"),
+        document.getElementById("soal4"),
+        document.getElementById("soal5")
+      ];
+
+      // Pastikan semua soal diisi
+      for (let input of inputFields) {
+        if (input.value.trim() === "") {
+          pesan.textContent = "⚠️ Semua soal harus dijawab sebelum mengirim!";
+          pesan.style.color = "yellow";
+          return;
+        }
+      }
+
+      // Cek jawaban
+      let semuaBenar = true;
+      for (let i = 0; i < 5; i++) {
+        const jawaban = inputFields[i].value.toLowerCase().trim();
+        if (jawaban !== kunciJawaban[i]) semuaBenar = false;
+      }
+
+      if (semuaBenar) {
+        window.location.href = "chat.html"; // halaman lolos
+      } else {
+        nyawa--;
+        updateNyawa();
+        pesan.textContent = `❌ Ada jawaban salah! Sisa nyawa: ${nyawa}`;
+        pesan.style.color = "#fff";
+        gambar.src = "https://tse3.mm.bing.net/th/id/OIP.Uu7Yehh0bqAQ43lw2pzOJgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3";
+        gambar.style.display = "block";
+
+        if (nyawa <= 0) {
+          pesan.textContent = "💀 Game Over! Nyawa kamu habis 😢";
+          gambar.src = "https://png.pngtree.com/png-clipart/20210311/original/pngtree-game-over-sign-with-pixel-effect-classic-png-image_5985115.jpg";
+          inputFields.forEach(i => i.disabled = true);
+          tombol.disabled = true;
+        }
+      }
+    }
+
+    updateNyawa();
+  </script>
+  <blockquote>Jika ada no yang kesulitan boleh bertanya kepada khali tapi<mark> hanya boleh satu soal</mark></blockquote>
+</body>
+</html>

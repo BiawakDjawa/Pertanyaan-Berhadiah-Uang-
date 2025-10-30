@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pertanyaan Untuk Teman</title>
+  <style>
+    /* 🌈 Background gradasi oranye–merah yang cerah & bergerak lembut */
+
+    @media (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .tombol-hadiah {
+    width: 80%;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  #kodeHadiah {
+    font-size: 18px;
+    width: 80%;
+    word-wrap: break-word;
+  }
+}
+
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(120deg, #ffae00, #ff4500, #ff0000);
+      background-size: 300% 300%;
+      animation: gradasiBergerak 8s ease infinite;
+    }
+
+    @keyframes gradasiBergerak {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    blockquote {
+      color: #ffe9d6;
+      font-size: 20px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      width: 250px;
+      text-align: center;
+      outline: none;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 25px;
+      font-size: 16px;
+      background: linear-gradient(90deg, #ff7300, #ff3c00);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255,255,255,0.6);
+    }
+
+    #pesan {
+      font-weight: bold;
+      margin-top: 15px;
+      font-size: 18px;
+    }
+
+    #gambarSalah {
+      display: none;
+      width: 180px;
+      margin-top: 10px;
+      animation: muncul 0.5s ease-out;
+    }
+
+    @keyframes muncul {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1><em>TERUNTUK TEMANKU, TOLONG JAWAB INI 💬</em></h1>
+  <blockquote><em>Khalil itu sukanya olahraga apa?</em></blockquote>
+
+  <input type="text" id="jawaban" placeholder="Tulis jawaban di sini...">
+  <button onclick="cekJawaban()">Kirim</button>
+
+  <p id="pesan"></p>
+  <img id="gambarSalah" src="" alt="">
+
+  <script>
+    function cekJawaban() {
+      const jawaban = document.getElementById("jawaban").value.toLowerCase().trim();
+      const pesan = document.getElementById("pesan");
+      const gambar = document.getElementById("gambarSalah");
+
+      if (jawaban === "basket" || jawaban === "basketball") {
+        // Jika benar → pindah ke halaman lain
+        window.location.href = "halo.html"; // ganti sesuai kebutuhanmu
+      } else {
+        // Jika salah → tampilkan pesan + gambar
+        pesan.textContent = "❌ Jawaban salah! Silakan coba lagi!";
+        pesan.style.color = "#fff";
+
+        gambar.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/X_mark.svg/2048px-X_mark.svg.png";
+        gambar.style.display = "block";
+      }
+    }
+  </script>
+
+</body>
+</html>
